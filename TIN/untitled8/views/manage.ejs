@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zarządzaj</title>
+    <link rel="stylesheet" href="/stylesheets/manage.css">
+</head>
+<body>
+<h1>Zarządzaj Danymi</h1>
+<% if (data.Roles.length > 0) { %>
+    <h2>Role</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% data.Roles.forEach(role => { %>
+            <tr>
+                <td><%= role.role_id %></td>
+                <td><%= role.description %></td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+<% } else { %>
+    <p><strong>Brak ról</strong></p>
+<% } %>
+
+<% if (data.Users.length > 0) { %>
+    <h2>Użytkownicy</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Login</th>
+            <th>Hasło</th>
+            <th>rola</th>
+            <th>Opcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% data.Users.forEach(user => { %>
+            <tr>
+                <td><%= user.user_id %></td>
+                <td><%= user.login %></td>
+                <td><%= user.password %></td>
+                <td><%= user.role_id === 1 ? 'Admin' : 'Customer' %></td>
+                <td>
+                    <form action="/manage/delete/Users/<%= user.user_id %>?_method=DELETE" method="POST">
+                        <button type="submit">Usuń</button>
+                    </form>
+                    <form action="/manage/edit/Users/<%= user.user_id %>?_method=EDIT" method="GET">
+                        <button type="submit">Edytuj</button>
+                    </form>
+                </td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+<% } else { %>
+    <p>Brak użytkowników</p>
+<% } %>
+
+<% if (data.Movies.length > 0) { %>
+    <h2>Filmy</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Tytuł</th>
+            <th>Gatunek</th>
+            <th>Czas trwania (min)</th>
+            <th>Opis</th>
+            <th>Data wydania</th>
+            <th>Opcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% data.Movies.forEach(movie => { %>
+            <tr>
+                <td><%= movie.movie_id %></td>
+                <td><%= movie.title %></td>
+                <td><%= movie.genre %></td>
+                <td><%= movie.duration %></td>
+                <td><%= movie.description %></td>
+                <td><%= movie.release_date %></td>
+                <td>
+                    <form action="/manage/delete/Movies/<%= movie.movie_id %>?_method=DELETE" method="POST">
+                        <button type="submit">Usuń</button>
+                    </form>
+                    <form action="/manage/edit/Movies/<%= movie.movie_id %>" method="GET">
+                        <button type="submit">Edytuj</button>
+                    </form>
+                </td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+<% } else { %>
+    <p>Brak filmów</p>
+<% } %>
+
+<% if (data.Showings.length > 0) { %>
+    <h2>Seanse</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Tytuł</th>
+            <th>Czas trwania (min)</th>
+            <th>Opcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% data.Showings.forEach(showing => { %>
+            <tr>
+                <td><%= showing.showing_id %></td>
+                <td><%= showing.movie_title %></td>
+                <td><%= showing.showing_time %></td>
+                <td>
+                    <form action="/manage/delete/Showings/<%= showing.showing_id %>?_method=DELETE" method="POST">
+                        <button type="submit">Usuń</button>
+                    </form>
+                    <form action="/manage/edit/Showings/<%= showing.showing_id %>" method="GET">
+                        <button type="submit">Edytuj</button>
+                    </form>
+                    <form action="/manage/details/Showings/<%= showing.showing_id %>" method="GET">
+                        <button type="submit">Detale</button>
+                    </form>
+                </td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+<% } else { %>
+    <p>Brak seansów</p>
+<% } %>
+
+<% if (data.Reservations.length > 0) { %>
+    <h2>Rezerwacje</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Tytuł</th>
+            <th>Login</th>
+            <th>Opcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% data.Reservations.forEach(reservation => { %>
+            <tr>
+                <td><%= reservation.reservation_id %></td>
+                <td><%= reservation.movie_title %></td>
+                <td><%= reservation.user_login %></td>
+                <td>
+                    <form action="/manage/delete/Reservations/<%= reservation.reservation_id %>?_method=DELETE" method="POST" style="display:inline;">
+                        <button type="submit">Usuń</button>
+                    </form>
+                    <form action="/manage/edit/Reservations/<%= reservation.reservation_id %>" method="GET" style="display:inline;">
+                        <button type="submit">Edytuj</button>
+                    </form>
+                </td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+<% } else { %>
+    <p>Brak rezerwacji</p>
+<% } %>
+<h2>Dodaj użytkownika</h2>
+<form action="/manage/add/Users" method="POST" id="addUseForm">
+    <label for="login">Login:</label>
+    <input type="text" id="login" name="login" required><br><br>
+
+    <label for="password">Hasło:</label>
+    <input type="text" id="password" name="password" required><br><br>
+
+    <label for="role_id">Rola:</label>
+    <select id="role_id" name="role_id" required>
+        <% data.Roles.forEach(role => { %>
+            <option value="<%= role.role_id %>"><%= role.description %></option>
+        <% }) %>
+    </select><br><br>
+
+    <button type="submit">Dodaj Użytkownika</button>
+</form>
+<script>
+    document.getElementById('addUseForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const login = document.getElementById('login').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        if (login.length < 5) {
+            alert("Login musi mieć minimum 5 znaków.");
+            return;
+        }
+
+        const passwordHasMinTwoDigits = (password.match(/\d/g) || []).length >= 2;
+        if (password.length < 5 || !passwordHasMinTwoDigits) {
+            alert("Hasło musi mieć co najmniej 5 znaków i zawierać co najmniej 2 cyfry.");
+            return;
+        }
+
+        document.getElementById('addUseForm').submit();
+    });
+</script>
+
+<h2>Dodaj Film</h2>
+
+<form action="/manage/add/Movies" method="POST">
+    <label for="title">Tytuł:</label>
+    <input type="text" id="title" name="title" required><br><br>
+
+    <label for="genre">Gatunek:</label>
+    <input type="text" id="genre" name="genre" required><br><br>
+
+    <label for="duration">Czas trwania (min):</label>
+    <input type="number" id="duration" name="duration" required><br><br>
+
+    <label for="description">Opis:</label>
+    <textarea id="description" name="description" required></textarea><br><br>
+
+    <label for="release_date">Data premiery:</label>
+    <input type="date" id="release_date" name="release_date" required><br><br>
+
+    <button type="submit">Dodaj Film</button>
+</form>
+
+<h2>Dodaj Seans</h2>
+<form action="/manage/add/Showings" method="POST">
+    <label for="movie_id">Film:</label>
+    <select id="movie_id" name="movie_id" required>
+        <% data.Movies.forEach(movie => { %>
+            <option value="<%= movie.movie_id %>"><%= movie.title %></option>
+        <% }) %>
+    </select><br><br>
+
+    <label for="showing_time">Czas pokazu:</label>
+    <input type="datetime-local" id="showing_time" name="showing_time" required><br><br>
+
+    <button type="submit">Dodaj Pokaz</button>
+</form>
+
+<h2>Dodaj Rezerwację</h2>
+<form action="/manage/add/Reservations" method="POST">
+    <label for="showing_id">Pokaz:</label>
+    <select id="showing_id" name="showing_id" required>
+        <% data.Showings.forEach(showing => { %>
+            <option value="<%= showing.showing_id %>"><%= showing.movie_title %> - <%= showing.showing_time %></option>
+        <% }) %>
+    </select><br><br>
+
+    <label for="user_id">Użytkownik:</label>
+    <select id="user_id" name="user_id" required>
+        <% data.Users.forEach(user => { %>
+            <option value="<%= user.user_id %>"><%= user.login %></option>
+        <% }) %>
+    </select><br><br>
+    <button type="submit">Dodaj Rezerwację</button>
+</form>
+
+
+
+<div class="back-button">
+    <a href="/homePage" class="btn-back">Powrót do strony głównej</a>
+</div>
+
+</body>
+</html>

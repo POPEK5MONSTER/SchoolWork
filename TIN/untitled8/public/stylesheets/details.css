@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: black;
+}
+
+h1, h2 {
+    text-align: center;
+    color: orange;
+    margin-bottom: 20px;
+}
+
+.showing-info {
+    width: 50%;
+    margin: 0 auto 30px;
+    padding: 20px;
+    background-color: #444444;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid orange;
+}
+.reservations-list {
+    list-style-type: none;
+    width: 30%;
+    margin: 0 auto 30px;
+    padding: 20px;
+    background-color: #444444;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid orange;
+}
+
+
+.reservations-list tbody tr:hover {
+    background-color: #4a4a4a;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.back-button a {
+    padding: 10px 20px;
+    background-color: #444444;
+    color: orange;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button a:hover {
+    background-color: darkorange;
+    color: black;
+}

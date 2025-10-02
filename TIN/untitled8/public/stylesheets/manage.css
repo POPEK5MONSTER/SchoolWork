@@ -1,0 +1,113 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: black;
+    color: white;
+}
+
+h1, h2 {
+    text-align: center;
+    color: orange;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 90%;
+    margin: 0 auto 40px;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid dimgray;
+    text-align: center;
+}
+
+table thead {
+    background-color: #444444;
+    color: orange;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #2d2d2d;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #3a3a3a;
+}
+
+table tbody tr:hover {
+    background-color: #4a4a4a;
+
+}
+
+table td button {
+    padding: 5px 10px;
+    background-color: #2d2d2d;
+    border: 1px solid orange;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+table td button:hover {
+    background-color: darkorange;
+    color: black;
+
+}
+
+form input, form select, form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #2d2d2d;
+    color: white;
+}
+
+form button {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #2d2d2d;
+    color: orange;
+    border: 2px solid orange;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+form button:hover {
+    background-color: darkorange;
+    color: black;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+.add-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.btn-back, .btn-add {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2d2d2d;
+    color: orange;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-back:hover, .btn-add:hover {
+    background-color: darkorange;
+    color: black;
+}

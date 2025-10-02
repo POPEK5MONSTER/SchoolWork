@@ -1,0 +1,113 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+}
+
+
+.showings-list {
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.showings-list li {
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px orange;
+    background-color: orange;
+    transition: background-color 0.3s;
+}
+
+.showings-list li:hover {
+    background-color: darkorange;
+}
+
+.showings-list a {
+    text-decoration: none;
+    color: black;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.btn-back {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: orange;
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+    background-color: darkorange;
+}
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.search-bar form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-bar button {
+    background-color: orange;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: darkorange;
+}
+
+.search-bar input[type="date"] {
+    padding: 8px 10px;
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.pagination {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.pagination a {
+    margin: 0 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: orange;
+    border: 1px solid black;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.pagination a.active {
+    background-color: orange;
+    color: black;
+    font-weight: bold;
+    border: none;
+}
+
+.pagination a:hover {
+    background-color: orange;
+    color: black;
+}
+

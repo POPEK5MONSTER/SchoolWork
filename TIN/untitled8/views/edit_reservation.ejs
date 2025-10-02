@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edytuj Rezerwację</title>
+    <link rel="stylesheet" href="/stylesheets/edit.css">
+
+</head>
+<body>
+<h1>Edytuj Rezerwację</h1>
+<form action="/manage/edit/Reservations/<%= reservation.reservation_id %>" method="POST">
+    <label for="user_id">Użytkownik:</label>
+    <select id="user_id" name="user_id" required>
+        <% users.forEach(user => { %>
+            <option value="<%= user.user_id %>" <%= user.user_id === reservation.user_id ? 'selected' : '' %>>
+                <%= user.login %>
+            </option>
+        <% }) %>
+    </select><br>
+
+    <label for="showing_id">Pokaz:</label>
+    <select id="showing_id" name="showing_id" required>
+        <% showings.forEach(showing => { %>
+            <option value="<%= showing.showing_id %>" <%= showing.showing_id === reservation.showing_id ? 'selected' : '' %>>
+                <%= showing.movie_title %> - <%= showing.showing_time %>
+            </option>
+        <% }) %>
+    </select><br>
+
+    <button type="submit">Zapisz</button>
+</form>
+
+<div class="back-button">
+    <a href="/manage" class="btn-back">Powrót</a>
+</div></body>
+</html>

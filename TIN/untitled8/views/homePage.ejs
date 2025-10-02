@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KINO</title>
+    <link rel="stylesheet" href="/stylesheets/homePage.css">
+</head>
+<body>
+<div class="header">
+    <div class="logo">
+        <img src="/images/CinemaGalaxy.png" alt="Logo Kina">
+    </div>
+</div>
+<h1 class="title">Cinema Galaxy</h1>
+
+<div class="center-container">
+    <button style="<%= user && user.role_id === 1 ? '' : 'display:none;' %>" onclick="location.href='/manage';">Zarządzaj</button>
+    <button onclick="location.href='/reserve';">Rezerwuj</button>
+    <button onclick="location.href='/logout';">Wyloguj</button>
+</div>
+
+<footer class="footer">
+    <p>&copy; 2024 Cinema Galaxy. Wszystkie prawa zastrzeżone.</p>
+</footer>
+
+</body>
+
+</html>

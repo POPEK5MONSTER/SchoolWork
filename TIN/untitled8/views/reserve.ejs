@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rezerwuj</title>
+    <link rel="stylesheet" href="/stylesheets/reserve.css">
+</head>
+<body>
+<h1>Dostępne Seanse</h1>
+<div class="search-bar">
+    <form action="/reserve" method="GET">
+        <label for="search-date">Wybierz datę:</label>
+        <input type="date" id="search-date" name="searchDate" value="<%= searchDate %>" required />
+        <button type="submit">Szukaj</button>
+    </form>
+
+    <form action="/reserve" method="GET">
+        <button type="submit">Wyświetl wszystkie filmy</button>
+    </form>
+</div>
+<ul class="showings-list">
+    <% showings.forEach(showing => { %>
+        <li>
+            <a href="/reserve/<%= showing.showing_id %>">
+                <strong><%= showing.movie_title %></strong>
+                <br>
+                <small><%= new Date(showing.showing_time).toLocaleString().slice(0, -3) %></small>
+            </a>
+        </li>
+    <% }); %>
+</ul>
+
+<div class="pagination">
+    <% if (currentPage > 1) { %>
+        <a href="/reserve?page=<%= currentPage - 1 %>&searchDate=<%= searchDate %>">Poprzednia</a>
+    <% } %>
+    <% for (let i = 1; i <= totalPages; i++) { %>
+        <a href="/reserve?page=<%= i %>&searchDate=<%= searchDate %>"
+           class="<%= i === currentPage ? 'active' : '' %>"><%= i %></a>
+    <% } %>
+    <% if (currentPage < totalPages) { %>
+        <a href="/reserve?page=<%= currentPage + 1 %>&searchDate=<%= searchDate %>">Następna</a>
+    <% } %>
+</div>
+
+<div class="back-button">
+    <a href="/homePage" class="btn-back">Powrót do strony głównej</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Szczegóły Seansu</title>
+    <link rel="stylesheet" href="/stylesheets/details.css">
+
+</head>
+<body>
+<h1>Szczegóły Seansu</h1>
+<div class="showing-info">
+    <h2>Film: <%= showing.movie_title %></h2>
+    <p><strong>Gatunek:</strong> <%= showing.genre %></p>
+    <p><strong>Czas trwania:</strong> <%= showing.duration %> minut</p>
+    <p><strong>Opis:</strong> <%= showing.description %></p>
+    <p><strong>Data premiery:</strong> <%= new Date(showing.release_date).toLocaleDateString() %></p>
+    <p><strong>Godzina seansu:</strong> <%= new Date(showing.showing_time).toLocaleString() %></p>
+</div>
+
+<h2>Klienci zarezerwowali:</h2>
+<% if (reservations.length > 0) { %>
+    <ul class="reservations-list">
+        <% reservations.forEach(reservation => { %>
+            <li>
+                <strong>Klient:</strong> <%= reservation.client_name %>
+            </li>
+        <% }); %>
+    </ul>
+<% } else { %>
+    <p>Brak rezerwacji na ten seans.</p>
+<% } %>
+
+<div class="back-button">
+    <a href="/manage" class="btn-back">Powrót</a>
+</div>
+</body>
+</html>

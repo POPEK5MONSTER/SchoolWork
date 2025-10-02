@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edytuj Użytkownika</title>
+    <link rel="stylesheet" href="/stylesheets/edit.css">
+</head>
+<body>
+<h1>Edytuj Użytkownika</h1>
+<% if (error1) { %>
+    <div class="error-message"><%= error1 %></div>
+<% } %>
+<form action="/manage/edit/Users/<%= user.user_id %>" method="POST">
+    <label for="login">Login:</label>
+    <input type="text" id="login" name="login" value="<%= user.login %>" required><br>
+
+    <label for="password">Hasło:</label>
+    <input type="text" id="password" name="password" value="<%= user.password %>" required><br>
+
+    <label for="role_id">Rola:</label>
+    <select id="role_id" name="role_id" required>
+        <option value="1" <%= user.role_id === 1 ? 'selected' : '' %>>Admin</option>
+        <option value="2" <%= user.role_id === 2 ? 'selected' : '' %>>Customer</option>
+    </select><br>
+
+    <button type="submit">Zapisz Zmiany</button>
+</form>
+<div class="back-button">
+    <a href="/manage" class="btn-back">Powrót</a>
+</div>
+</body>
+</html>

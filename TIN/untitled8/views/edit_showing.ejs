@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edytuj Pokaz</title>
+    <link rel="stylesheet" href="/stylesheets/edit.css">
+
+</head>
+<body>
+<h1>Edytuj Pokaz</h1>
+<form action="/manage/edit/Showings/<%= showing.showing_id %>" method="POST">
+    <label for="movie_id">Film:</label>
+    <select id="movie_id" name="movie_id" required>
+        <% movies.forEach(movie => { %>
+            <option value="<%= movie.movie_id %>" <%= movie.movie_id === showing.movie_id ? 'selected' : '' %>>
+                <%= movie.title %>
+            </option>
+        <% }) %>
+    </select><br>
+
+    <label for="showing_time">Czas pokazu:</label>
+    <input type="datetime-local" id="showing_time" name="showing_time" value="<%= new Date(showing.showing_time).toISOString().slice(0,16) %>" required><br>
+
+    <button type="submit">Zapisz</button>
+</form>
+
+<div class="back-button">
+    <a href="/manage" class="btn-back">Powrót</a>
+</div></body>
+</html>
